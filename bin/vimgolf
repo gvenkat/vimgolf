@@ -1,0 +1,10 @@
+#!/bin/env perl
+
+use strict;
+use Vim::Golf;
+
+eval {
+  Vim::Golf->run;
+};
+
+die $@ if $@;
