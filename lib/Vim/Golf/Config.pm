@@ -2,7 +2,10 @@ package Vim::Golf::Config;
 
 use strict;
 use File::Spec::Functions;
-use YAML::Any;
+use YAML::Any qw/
+  LoadFile
+  DumpFile
+/;
 
 
 sub path {
