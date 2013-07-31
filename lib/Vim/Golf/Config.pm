@@ -1,23 +1,29 @@
 package Vim::Golf::Config;
 
 use strict;
+use File::Spec::Functions;
 use YAML::Any;
 
-sub save {
-  my ( $class, $config ) = @_;
-  DumpFile( $class->path, $config );
-}
-
-sub load {
-  LoadFile( path() );
-}
 
 sub path {
-  $ENV{HOME} . '/.vimgolf';
+  catfile( $ENV{HOME}, '.vimgolf' );
+}
+
+sub config_path {
+  catfile( path, 'config.yaml' );
 }
 
 sub put_path {
-  path . '/put';
+  catfile( path, 'put' );
+}
+
+sub load {
+  LoadFile( config_path );
+}
+
+sub save {
+  my ( $class, $config ) = @_;
+  DumpFile( config_path, $config ) 
 }
 
 
