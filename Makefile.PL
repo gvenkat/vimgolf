@@ -1,5 +1,7 @@
 use strict;
 use warnings;
+
+# FIXME: move to ExtUtils::MakeMaker
 use inc::Module::Install;
 
 name 'Vim::Golf';
