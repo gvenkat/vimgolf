@@ -3,14 +3,25 @@ use Test::More;
 use Vim::Golf::Config;
 use FindBin;
 use File::Basename qw/dirname/;
+use YAML::Any qw/
+  DumpFile
+/;
+
 use Cwd;
 
 my $current_directory = dirname( __FILE__ ); 
+
+
 
 {
 
   local $ENV{HOME} = $current_directory; 
 
+  # prepare
+  my $initial_key = '65good39ac1b23c6f5b32e99aexf44b6';
+  DumpFile( Vim::Golf::Config->config_path, { key => $initial_key } );
+
+  # run
   is( Vim::Golf::Config->path, "$current_directory/.vimgolf", "detects correct path" );
   ok( Vim::Golf::Config->load, "loads file correctly" );
   ok( Vim::Golf::Config->load->{key} eq  '65good39ac1b23c6f5b32e99aexf44b6', "correct key" );
