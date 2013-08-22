@@ -2,14 +2,21 @@ package Vim::Golf::Constants;
 
 use strict;
 use warnings;
+use Data::Dumper;
 
-
-my %constants = ( 
-  GOLFHOST => ( $ENV{GOLFHOST} || 'http://vimgolf.com' )
-);
 
 
 sub import {
+
+  print Dumper( \%ENV );
+
+  my $vim = ( $ENV{GOLFVIM} || 'vim' );
+  my %constants = ( 
+    GOLFHOST      => ( $ENV{GOLFHOST}     || 'http://vimgolf.com' ),
+    GOLFDIFF      => ( $ENV{GOLFDIFF}     || 'diff' ),
+    GOLFSHOWDIFF  => ( $ENV{GOLFSHOWDIFF} || "$vim -d -n" ),
+    GOLFVIM       => $vim
+  );
 
   my $caller = caller;
 
