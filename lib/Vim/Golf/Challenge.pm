@@ -10,7 +10,7 @@ my $put_path;
 
 sub path {
   shift;
-  $put_path = $path;
+  $put_path = shift; 
 }
 
 sub new {
@@ -22,7 +22,7 @@ sub new {
   bless {
     id    => $id,
     data  => undef
-  } $class;
+  }, $class;
 
 }
 
@@ -32,6 +32,7 @@ sub data { shift->{data}; }
 
 
 sub url {
+  my $self = shift;
   "@{[ GOLFHOST ]}/challenges/@{[ $self->id ]}.json";
 }
 
